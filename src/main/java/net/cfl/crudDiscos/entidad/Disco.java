@@ -32,6 +32,7 @@ public class Disco {
 	private String artista;
 	@Column(name = "d_cod")
 	private String cod;
-	
+	@Column(name = "d_duracion")
+	private int duracion;
 	
 }
