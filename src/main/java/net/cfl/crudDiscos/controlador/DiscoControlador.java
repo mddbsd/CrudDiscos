@@ -1,7 +1,11 @@
 package net.cfl.crudDiscos.controlador;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +26,18 @@ public class DiscoControlador {
 	public ResponseEntity<DiscoDto> crearDisco(@RequestBody DiscoDto discoDto){
 		DiscoDto discoGuardado = discoServicio.crearDisco(discoDto);
 		return new ResponseEntity<>(discoGuardado, HttpStatus.CREATED);
+	}
+	
+	//REST API: Consulta Disco Por ID
+	@GetMapping("{id}")
+	public ResponseEntity<DiscoDto> consultaDiscoPorId(@PathVariable("id") Long discoId){
+		DiscoDto discoDto = discoServicio.consultaDiscoPorId(discoId);
+		return ResponseEntity.ok(discoDto);
+	}
+	@GetMapping
+	//REST API: Consutlta Todos los discos
+	public ResponseEntity<List<DiscoDto>> consultaTodosDiscos(){
+		List<DiscoDto> discos = discoServicio.consultaTodosDiscos();
+		return ResponseEntity.ok(discos);
 	}
 }
