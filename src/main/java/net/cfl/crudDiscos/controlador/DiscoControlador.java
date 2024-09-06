@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,7 @@ import lombok.AllArgsConstructor;
 import net.cfl.crudDiscos.dto.DiscoDto;
 import net.cfl.crudDiscos.servicios.DiscoServicio;
 
+@CrossOrigin("*")
 @AllArgsConstructor
 @RestController //Establece la clase como un controlador REST
 @RequestMapping("/api/discos")
@@ -48,4 +51,22 @@ public class DiscoControlador {
 		DiscoDto discoDto = discoServicio.actualizaDisco(discoId, discoActualizado);
 		return ResponseEntity.ok(discoDto);
 	}
+	
+	@DeleteMapping("{id}")
+	//RESY API: Borra DIsco
+	public ResponseEntity<String> borrarDisco(@PathVariable("id") Long discoId){
+		discoServicio.borraDisco(discoId);
+		return ResponseEntity.ok("El disco se borro correctamente");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

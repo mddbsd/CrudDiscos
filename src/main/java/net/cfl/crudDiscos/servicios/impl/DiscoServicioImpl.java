@@ -64,6 +64,14 @@ public class DiscoServicioImpl implements DiscoServicio {
 		return DiscoMapper.mapToDiscoDto(discoActualizadoObj);
 	}
 
+	@Override
+	public void borraDisco(Long discoId) {
+		Disco disco = discoRepositorio.findById(discoId)
+				.orElseThrow(() -> new RecursoNoEncontrado("El disco no existe " + discoId));
+		discoRepositorio.deleteById(discoId);
+		
+	}
+
 }
 
 
